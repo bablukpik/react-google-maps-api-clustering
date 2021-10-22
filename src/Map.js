@@ -20,31 +20,24 @@ const center = {
 
 const options = {
   // styles: mapStyle,
-  disableDefaultUI: true,
+  // disableDefaultUI: true,
   zoomControl: true,
+  mapTypeControl: false,
+  minZoom: 2,
+  streetViewControl: false,
+  zoomControlOptions: {
+    position: google.maps.ControlPosition.TOP_LEFT, // google is undefined here
+  },
 };
 const markerOptions = {
   imagePath:
     'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
 }
 
-
 const Map = () => {
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
   })
-
-  // const [map, setMap] = React.useState(null)
-
-  // const onMapLoad = React.useCallback(function callback(map) {
-  //   const bounds = new window.google.maps.LatLngBounds();
-  //   map.fitBounds(bounds);
-  //   setMap(map)
-  // }, [])
-
-  // const onUnmount = React.useCallback(function callback(map) {
-  //   setMap(null)
-  // }, [])
 
   if (loadError) {
     return <div>Map cannot be loaded right now, sorry.</div>
@@ -56,7 +49,6 @@ const Map = () => {
       center={center}
       zoom={3}
       options={options}
-      // onLoad={onMapLoad}
       onClick={(event) => {
         console.log('event', event)
       }}
